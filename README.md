@@ -1,7 +1,10 @@
 - 👋 Hi, I’m @S-procoder
 - 👀 I’m interested in robotics .
 - 🌱 I’m currently learning 
-- 💞️ I’m looking to collaborate on turbowarp .
-- 📫 How to reach me my gmail id (supersiddhantneekhra@gmail.com)
-- 😄 Pronouns: Siddhant Neekhra
-- ⚡ Fun fact: I am only 11 .
+- 💞️ I’m looking to collaborate on **Turbowarp** .
+- 😄 Pronouns: **Siddhant Neekhra**
+- ⚡ Fun fact: I am only ***11** .
+- 😁 A **NATIONALIST** in Robotics
+- 🙌 Favourite Arduino Board : **__Arduino UNO R4 Wifi__**
+- 🎆Dream Arduino Board : **__Arduino Giga R1 Wifi__**
+- 🎈Favourite Things : To Control any SB3 Based Game**THE Ones I create** with Arduino HID protocol With the Arduino UNO R4 Wifi
