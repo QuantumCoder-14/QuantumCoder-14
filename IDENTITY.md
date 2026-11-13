@@ -7,13 +7,9 @@ One name, everywhere: **S-procoder**.
 | GitHub username | `S-procoder` |
 | Display name | `S-procoder` |
 | Commit author name | `S-procoder` |
-| Commit email | `supersiddhantneekhra@gmail.com` |
+| Commit email | `supersiddhantneekhra@gmail.com` (the only verified one on the account) |
 | Website | https://s-procoder.github.io |
-| Portfolio repo | [s-procoder.github.io](https://github.com/S-procoder/s-procoder.github.io) |
-
-The only place the legal name appears is the copyright line inside `LICENSE.md` files —
-**Siddhant Neekhra**. That is deliberate: a copyright notice should name the person who
-holds the copyright, while the handle is the brand people search for.
+| Copyright line in licences | Siddhant Neekhra (legal name, licences only) |
 
 ---
 
@@ -24,48 +20,55 @@ git config --global user.name  "S-procoder"
 git config --global user.email "supersiddhantneekhra@gmail.com"
 ```
 
-Check what a repo will use before committing:
+A commit only links to the profile if its author email is registered on the account.
+`supersiddhantneekhra@gmail.com` is verified there. `sidthehacker07@gmail.com` is not, so
+commits authored with it are attributed to nobody and never appear on the contribution
+graph. Add it under **Settings → Emails** if you want to keep using it.
+
+---
+
+## The old name, and where it still lives
+
+The account used to be called `QuantumCoder-14` and was renamed to `S-procoder`. The old
+login is not in any file — a full sweep of all twelve repositories, private ones included,
+found zero occurrences. It survives in three places outside the files:
+
+| Where | What it does | Fix |
+| --- | --- | --- |
+| The git credential on this machine | Authenticates as `QuantumCoder-14`, which has no write access, so every `git push` returns **403** | Disconnect and reconnect the GitHub integration, or push from a machine signed in as `S-procoder` |
+| `SiteRakshak` → Settings → Collaborators | A stale collaborator entry under the old login — it is the same account, so it is harmless | Remove only if you are certain; it is an access entry on a private repo |
+| Commit author names in history | `Siddhant........` on about 66 commits across six repos | History rewrite, below |
+
+Nothing is broken by the first two. The third is cosmetic.
+
+---
+
+## Renaming the commits in history
+
+This changes every commit SHA in the affected repos and requires a force-push, so it will
+break any other clone you have. Do it once, deliberately.
 
 ```bash
-git config user.name && git config user.email
+# install once
+pip install git-filter-repo
+
+# per repo
+git clone https://github.com/S-procoder/REPO.git
+cd REPO
+git filter-repo --mailmap ../mailmap.txt --force
+git push --force origin main
 ```
 
----
+`mailmap.txt`, one line per old identity:
 
-## Rules
+```
+S-procoder <supersiddhantneekhra@gmail.com> Siddhant........ <supersiddhantneekhra@gmail.com>
+S-procoder <supersiddhantneekhra@gmail.com> S-procoder <supersiddhantneekhra@gmail.com>
+S-procoder <supersiddhantneekhra@gmail.com> Siddhant Neekhra <sidthehacker07@gmail.com>
+```
 
-1. **One handle.** `S-procoder` on every platform. No second identity, no `QuantumCoder7`,
-   no numbered variants.
-2. **One commit identity.** `S-procoder <supersiddhantneekhra@gmail.com>`.
-3. **One website.** https://s-procoder.github.io
-4. **Legal name only in licences.** `Siddhant Neekhra` appears in `LICENSE.md` and nowhere
-   else, so the two never compete.
+Repos affected, by commit count: SiteRakshak 48, S-procoder 9, RoadSOS 5, CrapClean 4,
+arduinomap 3, Metabatch 1.
 
----
-
-## The email trap, and why it matters
-
-A commit only links to a GitHub profile if its author email is **registered on that
-account**. `supersiddhantneekhra@gmail.com` is verified there; `sidthehacker07@gmail.com`
-is not. Commits authored with an unregistered address still appear in the repo, but they
-are attributed to nobody — they do not count on the contribution graph and do not show on
-the profile.
-
-If you want to commit from the other address, add it first:
-**GitHub → Settings → Emails → Add email address**, then verify it. Until then, use the
-primary one.
-
----
-
-## Historical drift
-
-Some older commits were authored under other names, from before this file existed:
-
-| Name used | Where |
-| --- | --- |
-| `Siddhant........` | SiteRakshak (48), S-procoder (3), Metabatch, CrapClean, arduinomap |
-| `Siddhant Neekhra <sidthehacker07@gmail.com>` | commits made during the Nov 2026 build-out |
-| `S-procoder <supersiddhantneekhra@gmail.com>` | original repo setup |
-
-Rewriting that history would unify the display, but it changes every commit SHA and breaks
-any existing clone. Left as-is unless there is a reason to do it.
+Force-pushing needs the credential problem above fixed first. Until then, no history
+rewrite is possible from here — the API cannot change existing commits, only add new ones.
