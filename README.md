@@ -43,6 +43,17 @@ Arduino • ESP32 • Python • C++
 
 ---
 
+### `$ cat ~/competitions`
+
+| Competition | Area |
+| --- | --- |
+| IRC | Robotics challenge |
+| AI Challenge — Russia | Artificial intelligence |
+| Game League | Game development |
+| Scratch Codefest | Creative coding |
+
+---
+
 ### `$ github --stats`
 
 <div align="center">
